@@ -1,0 +1,67 @@
+" Enable plugins
+"execute pathogen#infect()
+call plug#begin()
+Plug  'https://github.com/preservim/nerdtree'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/davidhalter/jedi-vim'
+call plug#end()
+
+" Diable autocomplete
+" \ symbol is a leader button
+" go-to-definition is \d or \g
+let g:jedi#popup_on_dot = 0
+"
+" Base on this
+" https://www.vimfromscratch.com/articles/vim-for-python/
+
+" vimplug installation:
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
+" Cheat-sheet
+" Completion <C-Space>
+" Goto assignment <leader>g (typical goto function)
+" Goto definition <leader>d (follow identifier as far as possible, includes imports and statements)
+" Goto (typing) stub <leader>s
+" Show Documentation/Pydoc K (shows a popup with assignments)
+" Renaming <leader>r
+" Usages <leader>n (shows all the usages of a name)
+" Open module, e.g. :Pyimport os (opens the os module)
+"
+" Highlight block and gc -> comment/uncomment
+"
+"
+
+" Enable highlight
+syntax on
+
+set modeline
+
+au BufNewFile,BufRead *.py set expandtab
+au BufNewFile,BufRead *.py set autoindent
+au BufNewFile,BufRead *.py set tabstop=4
+au BufNewFile,BufRead *.py set shiftwidth=4
+au BufNewFile,BufRead *.py set softtabstop=4
+
+set backspace=indent,eol,start
+set colorcolumn=80
+
+" enable fyletypes and indent plugins
+filetype on
+filetype plugin indent on
+
+" Autostart for browser
+"autocmd vimenter * NERDTree
+
+" Comments are green
+highlight Comment    ctermfg=119
+
+" Directory in NERDTree is dark
+hi Directory guifg=#FF0000 ctermfg=blue
+
+" Show pep8 warnings in file
+let g:flake8_show_in_file=1
+
+" Highlight warning list with blue color
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
+:colorscheme moody

